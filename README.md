@@ -233,18 +233,18 @@ joblib
 
 ## 👨‍💻 Author
 
-**ML Intern Assessment Project**  
-_January 2026_
+**Mohd Aafi**  
+_12th January 2026_
 
 ---
 
 ## 📜 License
 
-This project is for educational purposes as part of the Machine Learning Intern Assessment.
+This project is for educational purposes as part of the Machine Learning Case Study.
 
 ---
 
-## 🙏 Acknowledgments
+## 🙏 References
 
 - Scikit-learn documentation
 - XGBoost documentation
