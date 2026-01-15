@@ -1,0 +1,14 @@
+{
+  "customer_churn_classifier.pkl": {
+    "accuracy": 0.501,
+    "precision": 0.5044303797468355,
+    "recall": 0.5274652547981469,
+    "f1": 0.5156907149789712
+  },
+  "ChurnClassifier.h5": {
+    "accuracy": 0.5006666666666667,
+    "precision": 0.5022026431718062,
+    "recall": 0.9808074123097287,
+    "f1": 0.6642761093679964
+  }
+}

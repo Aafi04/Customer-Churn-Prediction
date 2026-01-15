@@ -1,0 +1,12 @@
+pandas>=1.3
+numpy>=1.21
+scikit-learn>=1.0
+xgboost>=1.6
+joblib
+streamlit>=1.10
+matplotlib
+seaborn
+openpyxl
+joblib
+# If you want to use the Keras model features, install TensorFlow
+tensorflow>=2.6

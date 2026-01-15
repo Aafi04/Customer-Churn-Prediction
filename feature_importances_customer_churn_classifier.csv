@@ -1,0 +1,10 @@
+feature,importance
+Location_Miami,0.12895502
+Location_Houston,0.11912409
+Location_New York,0.11626732
+Monthly_Bill,0.11143251
+Total_Usage_GB,0.108877026
+Subscription_Length_Months,0.108417936
+Gender_Male,0.10421025
+Age,0.10309358
+Location_Los Angeles,0.099622235
