@@ -1,132 +1,252 @@
-# `Problem Statement: Customer Churn Prediction`
+# 📊 Customer Churn Prediction
 
-In today's competitive business landscape, customer retention is paramount for sustainable growth and success. Our challenge is to develop a predictive model that can identify customers who are at risk of churning – discontinuing their use of our service. Customer churn can lead to a significant loss of revenue and a decline in market share. By leveraging machine learning techniques, we aim to build a model that can accurately predict whether a customer is likely to churn based on their historical usage behavior, demographic information, and subscription details. This predictive model will allow us to proactively target high-risk customers with personalized retention strategies, ultimately helping us enhance customer satisfaction, reduce churn rates, and optimize our business strategies. The goal is to create an effective solution that contributes to the long-term success of our company by fostering customer loyalty and engagement.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
+![ML](https://img.shields.io/badge/Machine%20Learning-XGBoost-green)
+![Deep Learning](https://img.shields.io/badge/Deep%20Learning-Keras-orange)
 
-# `Data Description`
+A comprehensive machine learning project for predicting customer churn using multiple algorithms including XGBoost and Neural Networks, with an interactive Streamlit dashboard for visualization and analysis.
 
-Dataset consists customer information for a customer churn prediction problem. It includes the following columns:
+---
 
-- **CustomerID**: Unique identifier for each customer.
+## 🎯 Problem Statement
 
-- **Name**: Name of the customer.
+In today's competitive business landscape, customer retention is paramount for sustainable growth and success. Our challenge is to develop a predictive model that can identify customers who are at risk of churning – discontinuing their use of our service.
 
-- **Age: Age of the customer.**
+**Objective:** Build a machine learning model that can accurately predict whether a customer is likely to churn based on their historical usage behavior, demographic information, and subscription details.
 
-- **Gender**: Gender of the customer (Male or Female).
+---
 
-- **Location**: Location where the customer is based, with options including Houston, Los Angeles, Miami, Chicago, and New York.
+## 📁 Project Structure
 
-- **Subscription_Length_Months**: The number of months the customer has been subscribed.
+```
+ML Project/
+├── 📓 Customer Churn Prediction.ipynb  # Main analysis notebook
+├── 🎛️ app.py                           # Streamlit dashboard
+├── 🐍 clean_code.py                    # Python script version
+├── 📤 export_metrics.py                # Metrics export utility
+├── 🤖 ChurnClassifier.h5               # Saved Keras model
+├── 📊 model_metrics.json               # Pre-computed metrics
+├── 📈 feature_importances_*.csv        # Feature importance data
+├── 📋 requirements.txt                 # Python dependencies
+├── 📄 Customer_Churn_Prediction_Report.md  # Detailed project report
+└── 📖 README.md                        # This file
+```
 
-- **Monthly_Bill**: Monthly bill amount for the customer.
+---
 
-- **Total_Usage_GB**: Total usage in gigabytes.
+## 📊 Dataset Overview
 
-- **Churn**: A binary indicator (1 or 0) representing whether the customer has churned (1) or not (0).
+| Attribute         | Value          |
+| ----------------- | -------------- |
+| **Total Records** | 10,000         |
+| **Features**      | 9              |
+| **Target**        | Churn (Binary) |
+| **Churn Rate**    | 49.2%          |
 
-# `Teck Tech Used`
+### Features
 
-- **Python Programming Language**
+| Feature                    | Type        | Description                      |
+| -------------------------- | ----------- | -------------------------------- |
+| CustomerID                 | ID          | Unique identifier                |
+| Name                       | Text        | Customer name                    |
+| Age                        | Numeric     | 18 - 70 years                    |
+| Gender                     | Categorical | Male / Female                    |
+| Location                   | Categorical | Houston, LA, Miami, Chicago, NYC |
+| Subscription_Length_Months | Numeric     | 1 - 24 months                    |
+| Monthly_Bill               | Numeric     | $30 - $100                       |
+| Total_Usage_GB             | Numeric     | 50 - 500 GB                      |
+| Churn                      | Binary      | 0 (Retained) / 1 (Churned)       |
 
-Python serves as the primary programming language for data analysis, modeling, and implementation of machine learning algorithms due to its rich ecosystem of libraries and packages.
+---
 
-- **Pandas**
+## 🔬 Methodology
 
-Pandas is used for data manipulation and analysis. It provides data structures and functions for effectively working with structured data, such as CSV files or databases.
+### 1️⃣ Exploratory Data Analysis
 
-- **NumPy**
+- Data quality assessment (no missing values, no duplicates)
+- Distribution analysis (all features normally distributed)
+- Correlation analysis (weak correlations found)
 
-NumPy is a fundamental package for numerical computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with a wide range of mathematical functions to operate on these arrays.
+### 2️⃣ Data Preprocessing
 
-- **Matplotlib and Seaborn**
+- One-hot encoding for categorical variables
+- MinMaxScaler for numerical features
+- 70/30 train-test split
 
-Matplotlib is used for creating static, interactive, and animated visualizations in Python. Seaborn is built on top of Matplotlib and provides a high-level interface for creating informative and attractive statistical graphics.
+### 3️⃣ Feature Engineering
 
-- **Jupyter Notebook**
+- Random Forest feature importance
+- VIF analysis for multicollinearity (all < 5)
+- PCA for dimensionality reduction
 
-Jupyter Notebook is an interactive web-based tool that allows for creating and sharing documents containing live code, equations, visualizations, and narrative text. It is commonly used for data analysis and exploration.
+### 4️⃣ Models Evaluated
 
-- **Scikit-Learn (sklearn)**
+| Category          | Algorithms                                                |
+| ----------------- | --------------------------------------------------------- |
+| **Classical ML**  | Logistic Regression, Decision Tree, KNN, SVM, Naive Bayes |
+| **Ensemble**      | Random Forest, AdaBoost, Gradient Boosting, XGBoost       |
+| **Deep Learning** | 5 Neural Network architectures with Keras                 |
 
-Scikit-Learn is a machine learning library in Python that provides a wide range of tools for various machine learning tasks such as classification, regression, clustering, model selection, and more.
+### 5️⃣ Optimization
 
-- **Random Forest Classifier**
+- GridSearchCV for hyperparameter tuning
+- 5-fold Cross-validation
+- Threshold optimization (0.1 - 1.0)
 
-Random Forest is an ensemble learning algorithm that combines multiple decision trees to create a more robust and accurate model. It's used for both classification and regression tasks.
+---
 
-- **Variance Inflation Factor (VIF)**
+## 📈 Results
 
-The VIF is used to detect multicollinearity among predictor variables in a regression analysis. It helps identify redundant variables that might negatively impact model performance.
+### Model Performance (Test Set)
 
-- **Model Evaluation Metrics**
+| Model        | Accuracy | Precision | Recall | F1-Score |
+| ------------ | -------- | --------- | ------ | -------- |
+| **XGBoost**  | 50.1%    | 50.4%     | 52.7%  | 51.6%    |
+| **Keras NN** | 50.1%    | 50.2%     | 98.1%  | 66.4%    |
 
-Various metrics like accuracy, precision, recall, F1-score, confusion matrix, ROC curve, and AUC (Area Under Curve) are used to assess the performance of the machine learning models.
+### Key Findings
 
-- **Logistic Regression, Decision Tree, K-Nearest Neighbors (KNN), Support Vector Machine (SVM), Naive Bayes, AdaBoost, Gradient Boosting, XGBoost**
+⚠️ **Important Insight:** The near-zero correlations between features and churn (~0.00) indicate that the provided features have **limited predictive power**. This explains why all models perform at approximately random chance level.
 
-These are different classification algorithms used to build predictive models based on the given data. Each algorithm has its own strengths and weaknesses.
+---
 
-- **TensorFlow and Keras**
+## 🖥️ Interactive Dashboard
 
-TensorFlow is an open-source machine learning framework developed by Google. Keras is a high-level neural networks API that runs on top of TensorFlow. They are used for building and training deep learning models.
+A fully-featured Streamlit dashboard for model evaluation and data exploration.
 
-- **Neural Networks**
+### Features
 
-Neural networks are used to model complex relationships in the data. They consist of layers of interconnected nodes that simulate the behavior of neurons in the human brain. Deep learning algorithms are based on neural networks.
+- 📊 **Overview Tab:** Dataset statistics, churn distribution, feature statistics
+- 🎯 **Model Performance:** Metrics, confusion matrix, ROC curve, feature importance
+- 📈 **Visualizations:** Interactive charts and correlation heatmap
+- 📋 **Data Explorer:** Filter data and download as CSV
 
-- **StandardScaler**
+### Screenshots
 
-StandardScaler is used for standardizing features by removing the mean and scaling to unit variance. It's an important preprocessing step in machine learning to ensure features are on similar scales.
+_Dashboard running at http://localhost:8502_
 
-- **Principal Component Analysis (PCA)**
+---
 
-PCA is a dimensionality reduction technique that transforms the data into a new coordinate system while preserving as much variance as possible. It's useful for reducing the complexity of high-dimensional data.
+## 🚀 Quick Start
 
-- **GridSearchCV**
+### Prerequisites
 
-GridSearchCV is used for hyperparameter tuning, where a set of hyperparameters are tested exhaustively to find the combination that produces the best performance for the model.
+- Python 3.8+
+- pip
 
-- **Cross-Validation**
+### Installation
 
-Cross-validation is a technique used to evaluate the generalization performance of a model by splitting the dataset into multiple subsets (folds) for training and testing.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd "ML Project"
 
-- **Early Stopping**
+# Create virtual environment
+python -m venv .venv
 
-Early stopping is a regularization technique used in training neural networks. It stops training when the model's performance on a validation set starts deteriorating, preventing overfitting.
+# Activate environment
+# Windows:
+.venv\Scripts\activate
+# macOS/Linux:
+source .venv/bin/activate
 
-- **ModelCheckpoint**
-
-ModelCheckpoint is a callback in Keras that saves the model's weights during training. It helps to save the best model based on a specific metric, allowing you to restore the model later.
-
-- **ROC Curve and AUC (Receiver Operating Characteristic - Area Under Curve)**
-
-ROC curve is a graphical representation of the trade-off between the true positive rate (sensitivity) and the false positive rate (1-specificity). AUC measures the area under the ROC curve and is used as a metric to evaluate binary classification models.
-
-- **Standard Machine Learning Libraries**
-
-The project utilizes standard machine learning libraries like SciPy and scikit-learn for various tasks including preprocessing, model selection, hyperparameter tuning, and model evaluation.
-
-# `Outcome`
-
-The outcome of this customer churn prediction project involves developing a machine learning model to predict whether customers are likely to churn or not. This prediction is based on various customer attributes such as age, gender, location, subscription length, monthly bill, and total usage. The model's primary purpose is to assist in identifying customers who are at a higher risk of churning, enabling the business to take proactive measures to retain them. By using the trained model to predict churn, the company can allocate resources more effectively, personalize engagement strategies, and implement targeted retention efforts. Ultimately, the project's success is measured by the model's ability to make predictions, helping the company reduce churn rates, improve customer satisfaction, and optimize its customer retention strategies.
-
-## Dashboard & Reproducibility
-
-A minimal interactive dashboard prototype and reproducibility helpers were added to the repository to inspect model results quickly.
-
-- App: [app.py](app.py) — Streamlit dashboard that loads the dataset (workspace-relative `customer_churn_large_dataset.xlsx` or an uploaded file) and the saved models `customer_churn_classifier.pkl` and `ChurnClassifier.h5` if present. It shows metrics, confusion matrix, ROC, and feature importances.
-- Export script: [export_metrics.py](export_metrics.py) — computes basic metrics and writes `model_metrics.json` and `feature_importances_*.csv` files for models found in the workspace.
-- Requirements: [requirements.txt](requirements.txt)
-
-Quick run (local):
-
-```powershell
+# Install dependencies
 pip install -r requirements.txt
+```
+
+### Run Dashboard
+
+```bash
 streamlit run app.py
 ```
 
-If you prefer to precompute metrics (useful for CI or for the dashboard to load quickly):
+The dashboard will open at `http://localhost:8501`
 
-```powershell
+### Pre-compute Metrics (Optional)
+
+```bash
 python export_metrics.py
 ```
+
+---
+
+## 🛠️ Tech Stack
+
+| Category             | Technologies              |
+| -------------------- | ------------------------- |
+| **Language**         | Python 3.11               |
+| **Data Processing**  | Pandas, NumPy             |
+| **Visualization**    | Matplotlib, Seaborn       |
+| **Machine Learning** | Scikit-learn, XGBoost     |
+| **Deep Learning**    | TensorFlow, Keras         |
+| **Dashboard**        | Streamlit                 |
+| **Development**      | Jupyter Notebook, VS Code |
+
+---
+
+## 📦 Dependencies
+
+```
+pandas>=1.3
+numpy>=1.21
+scikit-learn>=1.0
+xgboost>=1.6
+tensorflow>=2.6
+streamlit>=1.10
+matplotlib
+seaborn
+openpyxl
+joblib
+```
+
+---
+
+## 📄 Documentation
+
+- **[Project Report](Customer_Churn_Prediction_Report.md)** - Comprehensive analysis report
+- **[Jupyter Notebook](Customer%20Churn%20Prediction.ipynb)** - Step-by-step analysis
+- **[Dashboard Code](app.py)** - Streamlit application
+
+---
+
+## 🔮 Future Improvements
+
+1. **Data Enhancement**
+
+   - Collect behavioral features (login frequency, support tickets)
+   - Add customer lifetime value metrics
+   - Include temporal patterns
+
+2. **Model Improvements**
+
+   - Implement SHAP for model interpretability
+   - Try deep learning with embeddings
+   - Ensemble multiple models
+
+3. **Production Deployment**
+   - Containerize with Docker
+   - Deploy to cloud (Azure/AWS)
+   - Implement monitoring and alerts
+
+---
+
+## 👨‍💻 Author
+
+**ML Intern Assessment Project**  
+_January 2026_
+
+---
+
+## 📜 License
+
+This project is for educational purposes as part of the Machine Learning Intern Assessment.
+
+---
+
+## 🙏 Acknowledgments
+
+- Scikit-learn documentation
+- XGBoost documentation
+- TensorFlow/Keras documentation
+- Streamlit community
